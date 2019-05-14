@@ -5,7 +5,7 @@
 
 [![](http://dockeri.co/image/aptible/postgresql)](https://registry.hub.docker.com/u/aptible/postgresql/)
 
-PostgreSQL, on top of Debian Wheezy.
+PostgreSQL, on top of Debian Jessie.
 
 ## Installation and Usage
 
@@ -32,24 +32,6 @@ The PostgreSQL server is configured to enforce SSL for any TCP connection. It us
 * `9.5`: PostgreSQL 9.5
 * `9.4`: PostgreSQL 9.4
 * `9.3`: PostgreSQL 9.3 (EOL 2018-11-08)
-
-## Tests
-
-Tests are run as part of the `Dockerfile` build. To execute them separately within a container, run:
-
-    bats test
-
-## Deployment
-
-To push the Docker image to Quay, run the following command:
-
-    make release
-
-## Continuous Integration
-
-Images are built and pushed to Docker Hub on every deploy. Because Quay currently only supports build triggers where the Docker tag name exactly matches a GitHub branch/tag name, we must run the following script to synchronize all our remote branches after a merge to master:
-
-    make sync-branches
 
 ## Copyright and License
 
