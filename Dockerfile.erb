@@ -21,10 +21,6 @@ RUN set -x \
  && gosu nobody true \
  && apt-get purge -y --auto-remove ca-certificates wget
 
-# Define PostgreSQL version for shared scripts
-ENV PG_VERSION <%= ENV.fetch 'POSTGRES_VERSION' %>
-ENV POSTGIS_VERSION <%= ENV.fetch 'POSTGIS_VERSION' %>
-
 # Temporary workaround for host-container user conflicts on Linux Kernel >= 3.15
 # See https://github.com/docker/docker/issues/6345 for details.
 RUN ln -s -f /bin/true /usr/bin/chfn
@@ -47,6 +43,10 @@ RUN sed -ri  's/__DEBIAN__VERSION__/<%= ENV.fetch 'DEBIAN_VERSION' %>/' /etc/apt
 # Reading state information... Done
 # Note, selecting 'postgresql-9.5-postgis-2.1-scripts' for regex 'postgresql-9.5-postgis-2.1'
 # 0 upgraded, 0 newly installed, 0 to remove and 20 not upgraded.
+
+# Define PostgreSQL version for shared scripts
+ENV PG_VERSION <%= ENV.fetch 'POSTGRES_VERSION' %>
+ENV POSTGIS_VERSION <%= ENV.fetch 'POSTGIS_VERSION' %>
 
 RUN apt-key add /tmp/GPGkeys/postgresql-debian.key \
  && apt-get update \
